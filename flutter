@@ -1,0 +1,159 @@
+#1
+class Camera {
+  String? name;
+  String? color;
+  int? megapixel;
+
+  // Constructor
+  Camera(this.name, this.color, this.megapixel);
+
+  // Method to display camera details
+  void display() {
+    print('Camera Name: $name');
+    print('Color: $color');
+    print('Megapixels: $megapixel');
+  }
+}
+
+void main() {
+  var camera1 = Camera("digital", "pink", 50);
+  camera1.display();
+}
+#2
+class Patient {
+  String? name;
+  int? age;
+  String? disease;
+  Patient (this.name,this.age,this.disease);
+
+}
+
+void main(){
+ var patient =Patient ("ahmed",65,"cancer");
+  
+  print("Name: ${patient.name}");
+  print("Age: ${patient.age}");
+  print("Disease: ${patient.disease}");
+
+  
+}
+#3
+class BankAccount {
+  String accountNumber;
+  String accountHolder;
+  double balance;
+
+  BankAccount(this.accountNumber, this.accountHolder, this.balance);
+
+  void deposit(double amount) {
+    if (amount > 0) {
+      balance += amount;
+      print('Deposited: \$${amount}. New balance: \$${balance}');
+    } else {
+      print('Deposit amount must be positive.');
+    }
+  }
+
+  void withdraw(double amount) {
+    if (amount > 0 && amount <= balance) {
+      balance -= amount;
+      print('Withdrew: \$${amount}. New balance: \$${balance}');
+    } else if (amount > balance) {
+      print('Insufficient funds for withdrawal.');
+    } else {
+      print('Withdrawal amount must be positive.');
+    }
+  }
+}
+
+void main() {
+  var account = BankAccount('123456', 'John Doe', 500.0);
+  
+  account.deposit(150.0);
+  
+  account.withdraw(100.0);
+  
+  account.withdraw(600.0);
+}
+#4
+class Employee {
+  String name;
+  String position;
+  double salary;
+
+  static double totalPayroll = 0;
+
+  Employee.withoutSalary(this.name, this.position) : salary = 0;
+
+  Employee(this.name, this.position, this.salary) {
+    totalPayroll += salary; // Update total payroll
+  }
+
+  void setSalary(double newSalary) {
+    totalPayroll += (newSalary - salary);
+    salary = newSalary;
+  }
+
+  static void showTotalPayroll() {
+    print('Total Payroll: \$${totalPayroll}');
+  }
+}
+
+void main() {
+  var emp1 = Employee.withoutSalary('Alice', 'Developer');
+  var emp2 = Employee('Bob', 'Manager', 5000);
+  
+  emp1.setSalary(3000);
+  
+  Employee.showTotalPayroll();
+}
+
+#5
+class PhonePlan {
+  String planName;
+  double dataLimit; 
+  double dataUsed;
+
+  PhonePlan(this.planName, this.dataLimit, [this.dataUsed = 0]);
+
+  void useData(double amount) {
+    if (amount < 0) {
+      print("Amount must be positive.");
+      return;
+    }
+
+    dataUsed += amount;
+    if (dataUsed > dataLimit) print("Warning: Data usage has exceeded the limit!");
+  }
+
+  void resetData() {
+    dataUsed = 0;
+    print("Data usage has been reset to 0 GB.");
+  }
+
+  void showDataUsage() {
+    double remainingData = dataLimit - dataUsed;
+    print("Current data usage: ${dataUsed} GB, Remaining data: ${remainingData} GB");
+  }
+}
+
+void main() {
+  PhonePlan myPlan = PhonePlan("Unlimited Plan", 20);
+  
+  myPlan.showDataUsage(); 
+  myPlan.useData(5); 
+  myPlan.showDataUsage(); 
+  myPlan.useData(16);     
+  myPlan.showDataUsage(); 
+  myPlan.resetData();     
+  myPlan.showDataUsage(); 
+}
+
+
+
+
+
+
+
+
+
